@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios"; // Ensure you import Axios
 
 function App() {
@@ -33,11 +33,7 @@ function App() {
                 },
             });
 
-            setResults(response.data);
-
-            // Assuming backend returns image URLs for annotated images
-            setObjectImage(response.data.object_annotated_image);
-            setPeopleImage(response.data.people_annotated_image);
+            setResults(response.data); // Save the analysis results
         } catch (error) {
             console.error(error.message);
             alert("Failed to analyze the image.");
@@ -45,6 +41,14 @@ function App() {
             setLoading(false);
         }
     };
+
+    // Fetch images only after results have been updated
+    useEffect(() => {
+        if (results) {
+            setObjectImage(results.object_annotated_image);
+            setPeopleImage(results.people_annotated_image);
+        }
+    }, [results]); // Dependency on results
 
     return (
         <div className="App min-h-screen flex flex-col items-center justify-center bg-gray-100 text-gray-800">
@@ -136,6 +140,7 @@ function App() {
                         </div>
                     )}
 
+                    {/* Object Annotated Image */}
                     {objectImage && (
                         <div className="mt-4">
                             <h3 className="text-lg font-bold">Objects Annotated Image:</h3>
@@ -147,6 +152,7 @@ function App() {
                         </div>
                     )}
 
+                    {/* People Annotated Image */}
                     {peopleImage && (
                         <div className="mt-4">
                             <h3 className="text-lg font-bold">People Annotated Image:</h3>
