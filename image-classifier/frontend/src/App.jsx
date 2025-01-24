@@ -27,7 +27,7 @@ function App() {
         setLoading(true);
 
         try {
-            const response = await axios.post("http://localhost:5000/analyze-image", formData, {
+            const response = await axios.post("/analyze-image", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
