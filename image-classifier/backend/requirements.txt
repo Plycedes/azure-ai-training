@@ -2,3 +2,6 @@ Flask
 Flask-Cors
 python-dotenv
 azure-ai-vision-imageanalysis==1.0.0b3
+Pillow
+matplotlib
+azure-core

@@ -6,6 +6,9 @@ function App() {
     const [results, setResults] = useState(null);
     const [loading, setLoading] = useState(false);
 
+    const [objectImage, setObjectImage] = useState(null);
+    const [peopleImage, setPeopleImage] = useState(null);
+
     const handleFileChange = (e) => {
         setSelectedFile(e.target.files[0]);
     };
@@ -30,8 +33,11 @@ function App() {
                 },
             });
 
-            // Assuming the backend returns a JSON response with the analysis results
             setResults(response.data);
+
+            // Assuming backend returns image URLs for annotated images
+            setObjectImage(response.data.object_annotated_image);
+            setPeopleImage(response.data.people_annotated_image);
         } catch (error) {
             console.error(error.message);
             alert("Failed to analyze the image.");
@@ -65,15 +71,19 @@ function App() {
             {results && (
                 <div className="mt-8 bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">Analysis Results</h2>
+
+                    {/* Caption */}
                     {results.caption && (
                         <p className="text-lg">
                             <strong>Caption:</strong> {results.caption.text} (
                             <span className="text-blue-600">
-                                {(results.caption.confidence * 100).toFixed(2)}%
+                                {results.caption.confidence.toFixed(2)}%
                             </span>
                             )
                         </p>
                     )}
+
+                    {/* Tags */}
                     {results.tags && (
                         <div className="mt-4">
                             <strong className="text-lg">Tags:</strong>
@@ -82,7 +92,7 @@ function App() {
                                     <li key={index}>
                                         {tag.name} (
                                         <span className="text-blue-600">
-                                            {(tag.confidence * 100).toFixed(2)}%
+                                            {tag.confidence.toFixed(2)}%
                                         </span>
                                         )
                                     </li>
@@ -90,6 +100,8 @@ function App() {
                             </ul>
                         </div>
                     )}
+
+                    {/* Objects */}
                     {results.objects && (
                         <div className="mt-4">
                             <strong className="text-lg">Objects:</strong>
@@ -98,7 +110,7 @@ function App() {
                                     <li key={index}>
                                         {obj.name} (
                                         <span className="text-blue-600">
-                                            {(obj.confidence * 100).toFixed(2)}%
+                                            {obj.confidence.toFixed(2)}%
                                         </span>
                                         )
                                     </li>
@@ -106,6 +118,8 @@ function App() {
                             </ul>
                         </div>
                     )}
+
+                    {/* People Detected */}
                     {results.people && (
                         <div className="mt-4">
                             <strong className="text-lg">People Detected:</strong>
@@ -114,11 +128,33 @@ function App() {
                                     <li key={index}>
                                         Confidence:{" "}
                                         <span className="text-blue-600">
-                                            {(person.confidence * 100).toFixed(2)}%
+                                            {person.confidence.toFixed(2)}%
                                         </span>
                                     </li>
                                 ))}
                             </ul>
+                        </div>
+                    )}
+
+                    {objectImage && (
+                        <div className="mt-4">
+                            <h3 className="text-lg font-bold">Object Annotated Image</h3>
+                            <img
+                                src={`http://localhost:5000${objectImage}`}
+                                alt="Object Annotated"
+                                className="mt-2 max-w-full h-auto rounded-lg"
+                            />
+                        </div>
+                    )}
+
+                    {peopleImage && (
+                        <div className="mt-4">
+                            <h3 className="text-lg font-bold">People Annotated Image</h3>
+                            <img
+                                src={`http://localhost:5000${peopleImage}`}
+                                alt="People Annotated"
+                                className="mt-2 max-w-full h-auto rounded-lg"
+                            />
                         </div>
                     )}
                 </div>
@@ -128,4 +164,3 @@ function App() {
 }
 
 export default App;
-
