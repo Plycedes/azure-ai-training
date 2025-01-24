@@ -27,11 +27,15 @@ function App() {
         setLoading(true);
 
         try {
-            const response = await axios.post("/analyze-image", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
+            const response = await axios.post(
+                "http://20.127.172.135:5000/analyze-image",
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
 
             setResults(response.data); // Save the analysis results
         } catch (error) {
@@ -185,7 +189,7 @@ function App() {
                         <div className="mt-4">
                             <h3 className="text-lg font-bold">Objects Annotated Image:</h3>
                             <img
-                                src={`http://localhost:5000${objectImage}`}
+                                src={`http://20.127.172.135:5000${objectImage}`}
                                 alt="Object Annotated"
                                 className="mt-2 max-w-full h-auto rounded-lg"
                             />
@@ -197,7 +201,7 @@ function App() {
                         <div className="mt-4">
                             <h3 className="text-lg font-bold">People Annotated Image:</h3>
                             <img
-                                src={`http://localhost:5000${peopleImage}`}
+                                src={`http://20.127.172.135:5000${peopleImage}`}
                                 alt="People Annotated"
                                 className="mt-2 max-w-full h-auto rounded-lg"
                             />
