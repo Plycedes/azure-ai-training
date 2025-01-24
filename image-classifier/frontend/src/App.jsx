@@ -138,7 +138,7 @@ function App() {
 
                     {objectImage && (
                         <div className="mt-4">
-                            <h3 className="text-lg font-bold">Object Annotated Image</h3>
+                            <h3 className="text-lg font-bold">Objects Annotated Image:</h3>
                             <img
                                 src={`http://localhost:5000${objectImage}`}
                                 alt="Object Annotated"
@@ -149,7 +149,7 @@ function App() {
 
                     {peopleImage && (
                         <div className="mt-4">
-                            <h3 className="text-lg font-bold">People Annotated Image</h3>
+                            <h3 className="text-lg font-bold">People Annotated Image:</h3>
                             <img
                                 src={`http://localhost:5000${peopleImage}`}
                                 alt="People Annotated"
