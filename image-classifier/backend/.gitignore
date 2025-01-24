@@ -1,0 +1,43 @@
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment
+venv/
+env/
+.venv/
+ENV/
+*.env
+
+# Flask instance folder
+instance/
+
+# dotenv environment variables file
+.env
+
+# Azure AI Vision specific
+*.log
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Coverage directory
+.coverage
+.coverage.*
+
+# Testing output
+nosetests.xml
+pytest.xml
+test_*.log
