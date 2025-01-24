@@ -8,13 +8,12 @@ venv/
 env/
 .venv/
 ENV/
-*.env
+
 
 # Flask instance folder
 instance/
 
 # dotenv environment variables file
-.env
 
 # Azure AI Vision specific
 *.log
