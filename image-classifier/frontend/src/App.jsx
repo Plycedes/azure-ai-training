@@ -58,9 +58,9 @@ function App() {
     return (
         <div className="App min-h-screen flex flex-col items-center justify-center bg-gray-100 text-gray-800">
             {/* Navbar */}
-            <nav className="w-full bg-blue-600 text-white p-4 flex justify-between items-center">
+            <nav className="w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white p-4 flex justify-between items-center">
                 <h1 className="text-4xl font-bold">
-                    Azure AI Image Analysis<h1 className="text-xl">- Iddiyappam group</h1>
+                    Azure AI Image Analysis<p className="text-xl">- Iddiyappam group</p>
                 </h1>
 
                 <div className="w-20 h-20 bg-white rounded-full flex justify-center items-center shadow-lg">
@@ -76,7 +76,7 @@ function App() {
                 {/* Image Selection Box */}
                 <div className="mt-8 w-full min-w-2xl p-6 bg-white rounded-lg shadow-lg">
                     <form onSubmit={handleSubmit} className="space-y-6 flex flex-col items-center">
-                        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+                        <h2 className="text-3xl font-bold text-blue-500 mb-4">
                             Upload an Image for Analysis
                         </h2>
 
@@ -85,7 +85,7 @@ function App() {
                             type="file"
                             accept="image/*"
                             onChange={handleFileChange}
-                            className="block w-full text-sm text-gray-700 bg-blue-50 border border-gray-300 rounded-lg py-3 px-4 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                            className="block w-full text-sm text-gray-700 bg-gradient-to-r from-blue-50 to-indigo-50 border border-gray-300 rounded-lg py-3 px-4 hover:bg-gradient-to-r hover:from-blue-100 hover:to-indigo-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
                         />
 
                         {/* Image Preview */}
@@ -108,8 +108,8 @@ function App() {
                             disabled={loading}
                             className={`mt-4 w-full py-3 px-6 text-white font-semibold rounded-lg ${
                                 loading
-                                    ? "bg-blue-300 cursor-not-allowed"
-                                    : "bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-blue-600"
+                                    ? "bg-gradient-to-r from-blue-300 to-indigo-300 cursor-not-allowed"
+                                    : "bg-gradient-to-r from-blue-600 to-purple-600 hover:bg-gradient-to-r hover:from-blue-700 hover:to-purple-700 focus:ring-2 focus:ring-blue-600"
                             }`}
                         >
                             {loading ? "Analyzing..." : "Analyze Image"}
@@ -128,7 +128,7 @@ function App() {
                         {results.caption && (
                             <p className="text-lg">
                                 <strong>Caption:</strong> {results.caption.text} (
-                                <span className="text-blue-600">
+                                <span className="text-gradient-to-r from-blue-600 to-purple-600">
                                     {results.caption.confidence.toFixed(2)}%
                                 </span>
                                 )
@@ -143,7 +143,7 @@ function App() {
                                     {results.tags.map((tag, index) => (
                                         <li key={index}>
                                             {tag.name} (
-                                            <span className="text-blue-600">
+                                            <span className="text-gradient-to-r from-blue-600 to-purple-600">
                                                 {tag.confidence.toFixed(2)}%
                                             </span>
                                             )
@@ -161,7 +161,7 @@ function App() {
                                     {results.objects.map((obj, index) => (
                                         <li key={index}>
                                             {obj.name} (
-                                            <span className="text-blue-600">
+                                            <span className="text-gradient-to-r from-blue-600 to-purple-600">
                                                 {obj.confidence.toFixed(2)}%
                                             </span>
                                             )
@@ -179,7 +179,7 @@ function App() {
                                     {results.people.map((person, index) => (
                                         <li key={index}>
                                             Confidence:{" "}
-                                            <span className="text-blue-600">
+                                            <span className="text-gradient-to-r from-blue-600 to-purple-600">
                                                 {person.confidence.toFixed(2)}%
                                             </span>
                                         </li>
