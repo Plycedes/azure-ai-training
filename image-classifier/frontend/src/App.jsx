@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"; // Ensure you import Axios
+import axios from "axios";
 
 function App() {
     const [selectedFile, setSelectedFile] = useState(null);
